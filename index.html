@@ -25,131 +25,104 @@ tailwind.config = {
     --radius: 12px;
   }
 
-  /* ===== Fondo con tu foto + overlay ===== */
+  /* Fondo + overlay */
   body{
-    background: url('yo.jpg') center / cover fixed no-repeat, #0a0b0d;
-    color:#e5e7eb; min-height:100vh;
-  }
-  body::before{
-    content:""; position:fixed; inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.82));
-    pointer-events:none; z-index:-1;
+    background:
+      radial-gradient(1200px 500px at 50% -10%, rgba(58,124,255,.18), transparent 55%),
+      linear-gradient(180deg, rgba(6,8,12,.65), rgba(8,10,14,.78)),
+      url('yo.jpg') center / cover fixed no-repeat;
+    color:#e9edf3; min-height:100vh;
   }
 
-  /* ===== Cards flotando (glass) ===== */
+  /* Cards */
   .card{
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(15,16,20,.46);
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(20,22,26,.34);
     border-radius:16px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+    box-shadow: 0 14px 34px rgba(0,0,0,.32);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
 
-  /* ===== Controles uniformes ===== */
-  .control{
-    height:var(--control-h); min-height:var(--control-h);
-    border-radius:var(--radius);
-    font-size:14px;
-  }
+  /* Controles */
+  .control{ height:var(--control-h); min-height:var(--control-h); border-radius:var(--radius); font-size:14px; }
   .field{
-    width:100%;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
-    padding:0 .9rem;
-    color:#e5e7eb;
-    outline:none;
+    width:100%; background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    padding:0 .9rem; color:#e6edf8; outline:none;
     transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
   }
   .field:focus{
-    border-color:rgba(94,148,255,.55);
-    box-shadow:0 0 0 3px rgba(94,148,255,.18);
-    background:rgba(255,255,255,.08);
+    border-color:rgba(94,148,255,.6);
+    box-shadow:0 0 0 3px rgba(94,148,255,.24);
+    background:rgba(255,255,255,.12);
   }
 
-  /* Select estilizado */
   .select-wrap{ position:relative; }
   .select-wrap::after{
-    content:"▾";
-    position:absolute; right:.7rem; top:50%;
-    transform:translateY(-50%);
-    color:#94b2ff; font-size:14px; pointer-events:none;
+    content:"▾"; position:absolute; right:.7rem; top:50%; transform:translateY(-50%);
+    color:#a7c0ff; font-size:14px; pointer-events:none;
   }
-  select.field{
-    appearance:none; -webkit-appearance:none; -moz-appearance:none;
-    padding-right:2rem;
-    color-scheme: dark;
-  }
+  select.field{ appearance:none; padding-right:2rem; color-scheme: dark; }
   select.field option{ background:#0b0c10; color:#e5e7eb; }
 
-  /* Botones iguales en alto y padding */
+  /* Botones */
   .btn{
     height:var(--control-h); min-height:var(--control-h);
     border-radius:var(--radius);
-    border:1px solid rgba(255,255,255,.12);
-    background:rgba(255,255,255,.08);
-    padding:0 1rem;
-    font-weight:600; letter-spacing:.2px;
-    transition:.18s ease;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.10);
+    padding:0 1rem; font-weight:600; letter-spacing:.2px; transition:.18s ease;
   }
-  .btn:hover{ background:rgba(255,255,255,.14); }
-  .btn-primary{
-    background:linear-gradient(180deg,#3a7cff,#2c66e6);
-    border-color:#2c66e6; color:#fff;
-  }
+  .btn:hover{ background:rgba(255,255,255,.16); }
+  .btn-primary{ background:linear-gradient(180deg,#3a7cff,#2c66e6); border-color:#2c66e6; color:#fff; }
   .btn-primary:hover{ filter:brightness(1.05); }
 
-  /* ===== Modal deslizante ===== */
+  /* Modal */
   .modal-bg{
     position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:1rem;
     background:rgba(0,0,0,.72); opacity:0; visibility:hidden; pointer-events:none;
-    transition:opacity .22s ease, visibility .22s ease;
+    transition:opacity .22s ease, visibility .22s ease; z-index:50;
   }
   .modal-bg.open{ opacity:1; visibility:visible; pointer-events:auto; }
   .modal{
-    width:100%; max-width:900px; border-radius:18px;
-    border:1px solid rgba(255,255,255,.12); background:#0b0b0c;
-    transform:translateY(22px) scale(.98); opacity:0;
+    width:96%; max-width:760px; border-radius:18px;
+    border:1px solid rgba(255,255,255,.14); background:#0b0b0c;
+    transform:translateY(16px) scale(.98); opacity:0;
     transition:transform .26s ease, opacity .26s ease;
+    max-height:80vh; display:flex; flex-direction:column;
   }
   .modal-bg.open .modal{ transform:translateY(0) scale(1); opacity:1; }
-
-  /* ===== Panel negro con halo azul (para modales) ===== */
-  .panel-base{
-    border-radius:16px; padding:16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.05);
-    border:1px solid rgba(94,148,255,.28);
+  .modal-header{ padding:14px 18px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .modal-body{
+    padding:16px 18px;
+    overflow-y:auto; overscroll-behavior:contain; /* para scroll suave dentro del modal */
+    scroll-behavior:smooth;
   }
+
+  /* Panel negro con halo azul */
+  .panel-base{ border-radius:16px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.05); border:1px solid rgba(94,148,255,.28); }
   .panel-black{
     background:
       radial-gradient(1200px 400px at 50% -10%, rgba(58,124,255,.10), transparent 60%),
       linear-gradient(135deg, rgba(12,14,18,.98), rgba(10,12,16,.98));
   }
 
-  /* Pulso azul (recuerda) */
-  @keyframes pulse-blue{
-    0%{ transform:scale(1); filter:drop-shadow(0 0 0 rgba(94,148,255,0)); }
-    50%{ transform:scale(1.06); filter:drop-shadow(0 0 22px rgba(94,148,255,.65)); }
-    100%{ transform:scale(1); filter:drop-shadow(0 0 0 rgba(94,148,255,0)); }
-  }
-  .pulse{ animation:pulse-blue 2.1s ease-in-out infinite; }
-  .symbol{ font-weight:900; line-height:1; user-select:none; text-shadow:0 0 18px rgba(94,148,255,.6); }
-
   table{width:100%; border-collapse:separate; border-spacing:0 .5rem}
-  td,th{padding:.4rem .6rem}
-  th{font-size:.75rem; color:#94a3b8; text-align:left}
+  td,th{padding:.45rem .6rem}
+  th{font-size:.78rem; color:#a9b7c7; text-align:left}
 </style>
 </head>
 <body class="selection:bg-brand-500/30">
-  <!-- ===== Header: logo + saludo ===== -->
-  <header class="sticky top-0 z-10 bg-black/55 backdrop-blur border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-      <div class="flex items-center">
-        <img src="logo.png" alt="CRISS FITT" class="h-12 sm:h-14 w-auto rounded-md shadow" />
-      </div>
-      <div class="hidden xs:block text-sm sm:text-base font-semibold tracking-wide">
-        <span class="text-slate-300">Bienvenido, te saluda</span>
-        <span class="text-brand-400"> Cristian</span> <span aria-hidden="true">👋</span>
+  <!-- ===== Header (logo + bienvenida en azul brand) ===== -->
+  <header class="sticky top-0 z-10 bg-black/35 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-center gap-4">
+      <img src="logo.png" alt="CRISS FITT" class="h-14 sm:h-16 md:h-20 w-auto rounded-md shadow" />
+      <div class="text-center leading-tight">
+        <div class="text-slate-200/95 text-lg sm:text-xl font-semibold tracking-wide">
+          Bienvenido, <span class="text-brand-400">soy Cristian</span> 👋
+        </div>
+        <div class="text-slate-400 text-xs sm:text-sm">Calcula tus calorías y obtén un plan simple en 3 comidas</div>
       </div>
     </div>
   </header>
@@ -158,12 +131,12 @@ tailwind.config = {
   <main class="max-w-6xl mx-auto px-4 py-8 min-h-screen">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Entrada -->
-      <section class="card p-5 space-y-5">
-        <h2 class="font-semibold text-lg">Datos</h2>
+      <section class="card p-5 space-y-5" aria-labelledby="datos-title">
+        <h2 id="datos-title" class="font-semibold text-lg">Datos</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="text-sm text-slate-300">Sexo</label>
+            <label for="sex" class="text-sm text-slate-300">Sexo</label>
             <div class="select-wrap">
               <select id="sex" class="field control">
                 <option value="male">Hombre</option>
@@ -172,25 +145,25 @@ tailwind.config = {
             </div>
           </div>
           <div>
-            <label class="text-sm text-slate-300">Edad (años)</label>
+            <label for="age" class="text-sm text-slate-300">Edad (años)</label>
             <input id="age" type="number" min="15" max="75" value="28" class="field control" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="text-sm text-slate-300">Peso (kg)</label>
+            <label for="weight" class="text-sm text-slate-300">Peso (kg)</label>
             <input id="weight" type="number" min="35" max="250" value="75" class="field control" />
           </div>
           <div>
-            <label class="text-sm text-slate-300">Estatura (cm)</label>
+            <label for="heightCm" class="text-sm text-slate-300">Estatura (cm)</label>
             <input id="heightCm" type="number" min="140" max="220" value="175" class="field control" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="text-sm text-slate-300">Nivel de actividad</label>
+            <label for="activity" class="text-sm text-slate-300">Nivel de actividad</label>
             <div class="select-wrap">
               <select id="activity" class="field control">
                 <option value="1.2">Sedentario (poco o nada)</option>
@@ -202,7 +175,7 @@ tailwind.config = {
             </div>
           </div>
           <div>
-            <label class="text-sm text-slate-300">Objetivo</label>
+            <label for="goal" class="text-sm text-slate-300">Objetivo</label>
             <div class="select-wrap">
               <select id="goal" class="field control">
                 <option value="maintain">Mantener</option>
@@ -213,95 +186,96 @@ tailwind.config = {
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <button id="calcBtn" class="btn btn-primary">Calcular</button>
           <button id="detailsBtn" class="btn">Ver detalles</button>
-          <button id="rememberBtn" class="btn">Recuerda</button>
         </div>
 
-        <p class="text-xs text-slate-300/80">Uso recomendado para adultos sanos. Si tienes condiciones médicas (p. ej., embarazo, riñón), consulta a un profesional de salud.</p>
+        <p class="text-xs text-slate-300/85">Uso recomendado para adultos sanos. Si tienes condiciones médicas (p. ej., embarazo, riñón), consulta a un profesional de salud.</p>
       </section>
 
-      <!-- Resultados numéricos -->
-      <section class="card p-5 space-y-5">
+      <!-- Resultados -->
+      <section class="card p-5 space-y-5" aria-labelledby="res-title">
+        <h2 id="res-title" class="sr-only">Resultados</h2>
         <div class="grid grid-cols-2 gap-4">
           <div class="card p-4">
-            <div class="text-[11px] uppercase tracking-wide text-slate-400">Ecuación usada</div>
-            <div id="eqUsed" class="text-sm font-medium text-slate-200">Mifflin–St Jeor</div>
+            <div class="text-[11px] uppercase tracking-wide text-slate-300/85">Ecuación usada</div>
+            <div id="eqUsed" class="text-sm font-medium text-slate-100">Mifflin–St Jeor</div>
           </div>
           <div class="card p-4">
-            <div class="text-[11px] uppercase tracking-wide text-slate-400">GET mantenimiento (kcal)</div>
+            <div class="text-[11px] uppercase tracking-wide text-slate-300/85">GET mantenimiento (kcal)</div>
             <div id="get" class="text-2xl font-bold text-slate-50">0</div>
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div class="card p-4">
-            <div class="text-[11px] uppercase tracking-wide text-slate-400">TMB (kcal)</div>
+            <div class="text-[11px] uppercase tracking-wide text-slate-300/85">TMB (kcal)</div>
             <div id="tmb" class="text-2xl font-bold text-slate-50">0</div>
           </div>
           <div class="card p-4">
-            <div class="text-[11px] uppercase tracking-wide text-slate-400">Calorías objetivo</div>
+            <div class="text-[11px] uppercase tracking-wide text-slate-300/85">Calorías objetivo</div>
             <div id="targetKcal" class="text-2xl font-bold text-slate-50">0</div>
-            <div id="adjText" class="text-xs text-slate-400 mt-1">—</div>
+            <div id="adjText" class="text-xs text-slate-300 mt-1">—</div>
           </div>
         </div>
 
         <div class="card p-4">
           <div class="grid grid-cols-3 gap-3">
             <div class="card p-3">
-              <div class="text-slate-300 font-medium">Proteína</div>
+              <div class="text-slate-200 font-medium">Proteína</div>
               <div id="pGrams" class="text-slate-50 text-lg font-semibold">0 g</div>
-              <div id="pInfo" class="text-slate-400 text-xs">—</div>
+              <div id="pInfo" class="text-slate-300 text-xs">—</div>
             </div>
             <div class="card p-3">
-              <div class="text-slate-300 font-medium">Grasas</div>
+              <div class="text-slate-200 font-medium">Grasas</div>
               <div id="fGrams" class="text-slate-50 text-lg font-semibold">0 g</div>
-              <div id="fInfo" class="text-slate-400 text-xs">—</div>
+              <div id="fInfo" class="text-slate-300 text-xs">—</div>
             </div>
             <div class="card p-3">
-              <div class="text-slate-300 font-medium">Carbohidratos</div>
+              <div class="text-slate-200 font-medium">Carbohidratos</div>
               <div id="cGrams" class="text-slate-50 text-lg font-semibold">0 g</div>
-              <div id="cInfo" class="text-slate-400 text-xs">—</div>
+              <div id="cInfo" class="text-slate-300 text-xs">—</div>
             </div>
           </div>
         </div>
 
-        <details class="text-xs text-slate-300/80 leading-relaxed">
-          <summary class="cursor-pointer text-slate-400">Fuentes y notas</summary>
+        <details class="text-xs text-slate-300/85 leading-relaxed">
+          <summary class="cursor-pointer text-slate-300">Fuentes y notas</summary>
           <ul class="list-disc pl-5 mt-2 space-y-1">
             <li>Mifflin–St Jeor (1990) para TMB; multiplicador de actividad para GET.</li>
             <li>Macros orientativas por kg: Mantener 1.8/0.8 g/kg, Déficit 2.2/0.8 g/kg, Superávit 2.0/1.0 g/kg.</li>
-            <li>Ajuste fijo de objetivo: ±10% del mantenimiento.</li>
+            <li>Ajuste de objetivo estimado: ±10% del mantenimiento.</li>
           </ul>
         </details>
       </section>
     </div>
   </main>
 
-  <footer class="max-w-6xl mx-auto px-4 pb-10 mt-8 text-center text-xs text-slate-300/80">
-    © <span id="year"></span> CRISS <span class="text-brand-500">FITT</span> · Herramienta educativa.
+  <footer class="max-w-6xl mx-auto px-4 pb-10 mt-8 text-center text-xs text-slate-300/85">
+    © <span id="year"></span> CRISS <span class="text-brand-400">FITT</span> · Herramienta educativa.
   </footer>
 
-  <!-- ===== Modal reutilizable ===== -->
-  <div id="modalBg" class="modal-bg" aria-hidden="true">
-    <div class="modal p-5 md:p-6">
-      <div class="flex items-center justify-between gap-3">
+  <!-- ===== Modal ===== -->
+  <div id="modalBg" class="modal-bg" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-header flex items-center justify-between gap-3">
         <h3 id="modalTitle" class="text-lg font-semibold">Detalles</h3>
-        <button id="closeModal" class="btn">Cerrar</button>
+        <button id="closeModal" class="btn" aria-label="Cerrar">Cerrar</button>
       </div>
-      <div id="modalContent" class="mt-4 space-y-4 text-base leading-relaxed text-slate-300"></div>
+      <div id="modalContent" class="modal-body space-y-4 text-base leading-relaxed text-slate-300"></div>
     </div>
   </div>
 
 <!-- ================= LÓGICA ================= -->
 <script>
-/* Utilidades */
+/* ========== Utilidades ========== */
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const toNumber=(v,d=0)=>{const n=Number(String(v).replace(",", "."));return Number.isFinite(n)?n:d;}
 const round=(n,d=0)=>{const p=10**d;return Math.round(n*p)/p;}
+const round5 = n => Math.round(n/5)*5;
 
-/* Inputs */
+/* ========== Inputs ========== */
 const sex=document.getElementById('sex');
 const age=document.getElementById('age');
 const weight=document.getElementById('weight');
@@ -309,10 +283,9 @@ const heightCm=document.getElementById('heightCm');
 const activity=document.getElementById('activity');
 const goal=document.getElementById('goal');
 
-/* UI */
+/* ========== UI ========== */
 const calcBtn=document.getElementById('calcBtn');
 const detailsBtn=document.getElementById('detailsBtn');
-const rememberBtn=document.getElementById('rememberBtn');
 
 const eqUsed=document.getElementById('eqUsed');
 const tmbEl=document.getElementById('tmb');
@@ -326,19 +299,30 @@ const pInfo=document.getElementById('pInfo');
 const fInfo=document.getElementById('fInfo');
 const cInfo=document.getElementById('cInfo');
 
-/* Modal */
+/* ========== Modal ========== */
 const modalBg=document.getElementById('modalBg');
 const modalTitle=document.getElementById('modalTitle');
 const modalContent=document.getElementById('modalContent');
 const closeModal=document.getElementById('closeModal');
 
-function weightKg(){return toNumber(weight.value,0);}
-function heightCmVal(){return toNumber(heightCm.value,0);}
+/* ========== Helpers ========= */
+function weightKg(){return clamp(toNumber(weight.value,0), 35, 250);}
+function heightCmVal(){return clamp(toNumber(heightCm.value,0), 140, 220);}
 
+/* Split entero que suma exacto */
+function splitEven(total, parts){
+  const base = Math.floor(total/parts);
+  const arr  = Array(parts).fill(base);
+  let rem = total - base*parts;
+  for(let i=0; i<parts && rem>0; i++){ arr[i]+=1; rem--; }
+  return arr;
+}
+
+/* ========== Cálculos base ========== */
 function calcTMB(){
-  const a=toNumber(age.value,0);
-  const w=clamp(weightKg(),0,400);
-  const h=clamp(heightCmVal(),0,260);
+  const a=clamp(toNumber(age.value,0), 15, 75);
+  const w=weightKg();
+  const h=heightCmVal();
   eqUsed.textContent='Mifflin–St Jeor';
   return Math.max(0, 10*w + 6.25*h - 5*a + (sex.value==='male'?5:-161));
 }
@@ -350,59 +334,102 @@ function macrosByGoal(g){
   return {pPerKg:1.8, fPerKg:0.8, adj:0.0, label:'Mantener (0%)'};
 }
 
-/* Reparto exacto que suma el total */
-function splitEven(total, parts){
-  const base = Math.floor(total/parts);
-  const arr  = Array(parts).fill(base);
-  let rem = total - base*parts;
-  for(let i=arr.length-1; i>=0 && rem>0; i--){ arr[i]+=1; rem--; }
-  return arr;
+/* ========== Plantillas de comida (texto) ========== */
+function blocksGuideHTML(){
+  return `
+  <div class="panel-base panel-black">
+    <h4 class="font-semibold text-slate-100">Bloques de alimentos (guía rápida)</h4>
+    <div class="grid md:grid-cols-3 gap-4 mt-3">
+      <div>
+        <div class="text-slate-200 font-semibold mb-1">Carbo (~25 g C)</div>
+        <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
+          <li>Arroz cocido 85–90 g ≈ 25 C</li>
+          <li>Camote cocido 150 g ≈ 30 C</li>
+          <li>Avena seca 40 g ≈ 27 C</li>
+          <li>Plátano 1 mediano ≈ 27 C</li>
+          <li>Pan 2 rebanadas (60 g) ≈ 30 C</li>
+          <li>Yuca cocida 120 g ≈ 30 C</li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-slate-200 font-semibold mb-1">Proteína (~20 g P)</div>
+        <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
+          <li>Pechuga pollo 100 g ≈ 23–30 P</li>
+          <li>Atún en agua (1 lata) ≈ 28 P</li>
+          <li>Yogur griego 200 g ≈ 20 P</li>
+          <li>Claras 5 u ≈ 18 P</li>
+          <li>Res magra 100 g ≈ 23 P</li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-slate-200 font-semibold mb-1">Grasa (~10 g G)</div>
+        <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
+          <li>Aceite oliva 1 cda (15 ml) ≈ 14 G</li>
+          <li>Aguacate 70–80 g ≈ 10–12 G</li>
+          <li>Maní 15 g ≈ 8 G</li>
+          <li>Yema 1 u ≈ 5 G</li>
+        </ul>
+      </div>
+    </div>
+  </div>`;
 }
 
-/* Texto humano (modal Detalles) */
-function renderHumanReadout({label, target, pG, fG, cG, meals, weeklyText, safetyMsgs}) {
-  const m4 = meals.find(m => m.n === 4) || meals[0];
-  const prot3 = meals.find(m => m.n === 3)?.p?.[0] ?? '';
-  const prot4 = m4?.p?.[0] ?? '';
-  const prot5 = meals.find(m => m.n === 5)?.p?.[0] ?? '';
-
-  return `
+function examplePlatesHTML(mealTargets){
+  const cards = mealTargets.map((m,i)=>`
     <div class="panel-base panel-black">
+      <div class="font-semibold text-slate-100 mb-1">Comida ${i+1} · objetivo ≈ ${m.kcal} kcal</div>
+      <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
+        <li>Carbos base: combina 3–4 bloques (arroz/camote/avena/fruta) ≈ ${m.c} g C</li>
+        <li>Proteína: 2 bloques (pollo/atún/yogur) ≈ ${m.p} g P</li>
+        <li>Grasa: 1–2 bloques (aceite/aguacate) ≈ ${m.f} g G</li>
+      </ul>
+      <div class="text-xs text-slate-400 mt-2">Mueve más carbos si entrenas justo antes/después.</div>
+    </div>`).join('');
+  return `<div class="grid md:grid-cols-3 gap-4">${cards}</div>`;
+}
+
+/* Texto del modal */
+function renderDetails(plan){
+  const {label, target, pG, fG, cG, meals3, weeklyText, safetyMsgs} = plan;
+
+  const daily =
+    `<div class="panel-base panel-black">
       <p><b>Tu objetivo diario:</b> <b>${Math.round(target)} kcal</b> (${label.toLowerCase()}).</p>
-      <p><b>Proteína diaria:</b> <b>${Math.round(pG)} g</b>. Reparte la proteína en todas tus comidas:
-        con <b>3 comidas</b> ≈ <b>${prot3} g</b> por comida; con <b>4 comidas</b> ≈ <b>${prot4} g</b>; con <b>5 comidas</b> ≈ <b>${prot5} g</b>.</p>
-      <p><b>Grasas diarias:</b> <b>${Math.round(fG)} g</b>. Guía práctica: ~<b>15–25 g</b> por comida.</p>
-      <p><b>Carbohidratos diarios:</b> <b>${Math.round(cG)} g</b>. Pon más carbohidrato <b>antes y/o después</b> de entrenar.</p>
-      <p><b>Cómo aplicarlo hoy:</b> si haces <b>4 comidas</b>, distribuye <b>${m4.kcal.join(' / ')}</b> kcal y
-        <b>${m4.p.join(' / ')} g proteína</b> · <b>${m4.f.join(' / ')} g grasa</b> · <b>${m4.c.join(' / ')} g carbos</b> en cada una.</p>
-      <p><b>¿Debo “quemar” calorías?</b> No necesitas un número exacto: tu objetivo de <b>${Math.round(target)} kcal</b> ya contempla tu gasto.</p>
-      <p class="text-slate-400">${weeklyText}</p>
-      ${safetyMsgs.length? `<div class="text-xs text-slate-400 space-y-1">${safetyMsgs.map(m=>`<div>${m}</div>`).join('')}</div>`:''}
-    </div>
-  `;
+      <p><b>Macros diarios exactos:</b> <b>${Math.round(pG)} g proteína</b> · <b>${Math.round(fG)} g grasa</b> · <b>${Math.round(cG)} g carbohidratos</b>.</p>
+      <p><b>Plan en 3 comidas (exacto):</b> tabla siguiente.</p>
+      ${safetyMsgs.length? `<div class="text-xs text-amber-300/90 mt-2">${safetyMsgs.map(m=>`<div>${m}</div>`).join('')}</div>`:''}
+      <div class="text-slate-400 text-sm mt-2">${weeklyText}</div>
+    </div>`;
+
+  const rows = meals3.map((m,i)=>`
+    <tr class="hover:bg-white/5">
+      <td class="rounded-l-lg">Comida ${i+1}</td>
+      <td>${m.kcal}</td>
+      <td>${m.p} g</td>
+      <td>${m.f} g</td>
+      <td class="rounded-r-lg">${m.c} g</td>
+    </tr>`).join('');
+
+  const table =
+    `<div class="panel-base panel-black">
+      <h4 class="font-semibold text-slate-100 mb-2">Distribución exacta (3 comidas)</h4>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Comida</th><th>Kcal</th><th>Proteína</th><th>Grasa</th><th>Carbohidratos</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-200">${rows}</tbody>
+        </table>
+      </div>
+      <div class="text-xs text-slate-400 mt-2">La suma de las 3 comidas coincide EXACTO con tu objetivo diario.</div>
+    </div>`;
+
+  return `${daily}${table}${blocksGuideHTML()}<h4 class="font-semibold text-slate-100 mt-4">Ideas de platos por comida</h4>${examplePlatesHTML(meals3)}`;
 }
 
-/* Bloque “Recuerda” */
-function renderRememberBlock(){
-  return `
-    <div class="panel-base panel-black">
-      <div class="text-center mb-3 font-semibold">
-        Nunca olvides estos <span class="text-brand-400">3</span> pasos clave
-      </div>
-      <div class="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 flex-wrap">
-        <img src="comida.png" alt="Comida" class="w-20 sm:w-24 md:w-28 h-auto rounded-xl pulse" />
-        <div class="symbol text-brand-400 text-4xl sm:text-5xl md:text-6xl">+</div>
-        <img src="descanso.png" alt="Descanso" class="w-20 sm:w-24 md:w-28 h-auto rounded-xl pulse" style="animation-delay:.2s"/>
-        <div class="symbol text-brand-400 text-4xl sm:text-5xl md:text-6xl">+</div>
-        <img src="ejercicio.png" alt="Ejercicio" class="w-20 sm:w-24 md:w-28 h-auto rounded-xl pulse" style="animation-delay:.4s"/>
-        <div class="symbol text-brand-400 text-4xl sm:text-5xl md:text-6xl">=</div>
-        <img src="fuerte.png" alt="Fuerte" class="w-24 sm:w-28 md:w-32 h-auto rounded-2xl pulse" style="animation-delay:.6s"/>
-      </div>
-    </div>
-  `;
-}
-
-/* Cálculo principal */
+/* ========== Cálculo principal ========== */
 function compute(){
   const TMB=calcTMB();
   const GET=calcGET(TMB);
@@ -410,50 +437,94 @@ function compute(){
   const target = GET*(1+adj);
 
   const kg = weightKg();
-  const pG = kg * pPerKg;
-  const fG = kg * fPerKg;
-  const kcalP = pG*4, kcalF = fG*9;
-  const cG = Math.max(0,(target - (kcalP + kcalF))/4);
 
-  // Números básicos en tarjetas
+  // Macros base
+  let pG = kg * pPerKg;
+  let fG = kg * fPerKg;
+
+  // Buenas prácticas
+  const pMin = 1.6 * kg, pMax = 2.4 * kg;
+  pG = clamp(pG, pMin, pMax);
+  const minFatByPct = (target * 0.20) / 9;
+  const minFatByKg  = 0.6 * kg;
+  fG = Math.max(fG, minFatByPct, minFatByKg);
+
+  // Carbo residual
+  let kcalP = pG*4, kcalF = fG*9;
+  let cG = (target - (kcalP + kcalF))/4;
+
+  // Si carbs negativos, baja proteína hacia 1.6 g/kg
+  if (cG < 0){
+    const kcalDef = -cG*4;
+    const reducibleProt = pG - pMin;
+    const pDrop = Math.min(reducibleProt, kcalDef/4);
+    pG -= Math.max(0, pDrop);
+    kcalP = pG*4;
+    cG = (target - (kcalP + kcalF))/4;
+  }
+
+  // Redondeo a enteros
+  const totalKcal = Math.round(target);
+  const totalP = Math.round(pG);
+  const totalF = Math.round(fG);
+  const totalC = Math.round(cG);
+
+  // Alertas
+  const safetyMsgs=[];
+  if(target < TMB) safetyMsgs.push('⚠️ Objetivo por debajo de tu TMB. Sube calorías.');
+  const fatPct = ((totalF*9)/(totalKcal||1))*100;
+  if(fatPct < 20) safetyMsgs.push('ℹ️ La grasa queda < 20% de las kcal. Sube un poco para adherencia y salud hormonal.');
+  if(totalC <= 0) safetyMsgs.push('⚠️ Carbohidratos ≈ 0 g. Para rendimiento, ajusta macros o kcal.');
+
+  // Tarjetas
   tmbEl.textContent=round(TMB);
   getEl.textContent=round(GET);
-  targetKcalEl.textContent=round(target);
-  adjText.textContent=`${label}. Tu mantenimiento es ${round(GET)} kcal; objetivo ${round(target)} kcal/día.`;
-
-  pGrams.textContent=`${round(pG)} g`;  fGrams.textContent=`${round(fG)} g`;  cGrams.textContent=`${round(cG)} g`;
-  pInfo.textContent=`${pPerKg.toFixed(2)} g/kg × ${round(kg)} kg = ${round(pG)} g`;
-  fInfo.textContent=`${fPerKg.toFixed(2)} g/kg × ${round(kg)} kg = ${round(fG)} g`;
+  targetKcalEl.textContent=totalKcal;
+  adjText.textContent=`${label}. Mantenimiento ${round(GET)} kcal → objetivo ${totalKcal} kcal/día.`;
+  pGrams.textContent=`${totalP} g`;  fGrams.textContent=`${totalF} g`;  cGrams.textContent=`${totalC} g`;
+  pInfo.textContent=`${(totalP/kg).toFixed(2)} g/kg × ${round(kg)} kg = ${totalP} g`;
+  fInfo.textContent=`${(totalF/kg).toFixed(2)} g/kg × ${round(kg)} kg = ${totalF} g`;
   cInfo.textContent=`(Objetivo − proteínas − grasas) ÷ 4`;
 
   // Estimado semanal
-  const delta = target - GET;
+  const delta = totalKcal - Math.round(GET);
   const weeklyKg = (delta*7)/7700;
   const pctBody = (weeklyKg/Math.max(kg,1))*100;
   const weeklyText = (goal.value==='maintain')
     ? 'Mantenimiento: cambios de peso pequeños son normales.'
     : `Estimado de cambio: ${weeklyKg>=0?'+':''}${round(weeklyKg,2)} kg/sem (≈ ${round(pctBody,2)}%/sem). Recomendado: 0.25–0.5%/sem.`;
 
-  // Seguridad
-  const safetyMsgs=[];
-  if(target < TMB) safetyMsgs.push('⚠️ Objetivo por debajo de tu TMB. Sube calorías.');
-  const fatPct = ((fG*9)/(target||1))*100;
-  if(fatPct < 20) safetyMsgs.push('ℹ️ La grasa queda < 20% de las kcal. A largo plazo conviene ≥20%.');
+  /* Plan EXACTO en 3 comidas */
+  const meals3 = (()=>{
+    const kcal = splitEven(totalKcal, 3);
+    let p = splitEven(totalP, 3);
+    let f = splitEven(totalF, 3);
+    let c = splitEven(totalC, 3);
 
-  // Reparto exacto 3-4-5 comidas
-  const meals=[3,4,5].map(n=>({
-    n,
-    kcal: splitEven(Math.round(target),n),
-    p: splitEven(Math.round(pG),n),
-    f: splitEven(Math.round(fG),n),
-    c: splitEven(Math.round(cG),n)
-  }));
+    for(let i=0;i<3;i++){
+      let kcalNow = 4*p[i] + 9*f[i] + 4*c[i];
+      // Ajuste fino manteniendo enteros
+      while(kcalNow !== kcal[i]){
+        if(kcalNow < kcal[i]){
+          if(kcal[i] - kcalNow >= 4){ c[i] += 1; }
+          else { f[i] += 1; c[i] = Math.max(0, c[i]-2); }
+        }else{
+          if(kcalNow - kcal[i] >= 4 && c[i] > 0){ c[i] -= 1; }
+          else if(f[i] > 0){ f[i] -= 1; c[i] += 2; }
+          else if(p[i] > 0){ p[i] -= 1; }
+        }
+        kcalNow = 4*p[i] + 9*f[i] + 4*c[i];
+      }
+    }
+    return [{kcal:kcal[0], p:p[0], f:f[0], c:c[0]},
+            {kcal:kcal[1], p:p[1], f:f[1], c:c[1]},
+            {kcal:kcal[2], p:p[2], f:f[2], c:c[2]}];
+  })();
 
-  // Guardar para los modales
-  window.__plan = {label, target, pG, fG, cG, meals, weeklyText, safetyMsgs};
+  window.__plan = {label, target: totalKcal, pG: totalP, fG: totalF, cG: totalC, meals3, weeklyText, safetyMsgs};
 }
 
-/* Modal helpers */
+/* ========== Modal helpers ========== */
 function openModal(title, html){
   modalTitle.textContent = title;
   modalContent.innerHTML = html;
@@ -462,24 +533,18 @@ function openModal(title, html){
 }
 function closeModalFn(){ modalBg.classList.remove('open'); modalBg.setAttribute('aria-hidden','true'); }
 
-/* Init */
+/* ========== Init ========== */
 document.getElementById('year').textContent=new Date().getFullYear();
-
 calcBtn.addEventListener('click', compute);
 detailsBtn.addEventListener('click', ()=>{
   if(!window.__plan) compute();
-  const html = renderHumanReadout(window.__plan);
-  openModal('Cómo usar tu plan', html);
-});
-rememberBtn.addEventListener('click', ()=>{
-  const block = renderRememberBlock();
-  openModal('Recuerda', block);
+  openModal('Cómo usar tu plan', renderDetails(window.__plan));
 });
 closeModal.addEventListener('click', closeModalFn);
 modalBg.addEventListener('click', (e)=>{ if(e.target===modalBg) closeModalFn(); });
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModalFn(); });
 
-/* Cálculo inicial */
+/* Primer cálculo */
 compute();
 </script>
 </body>
