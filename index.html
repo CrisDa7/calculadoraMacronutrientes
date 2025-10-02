@@ -20,12 +20,7 @@ tailwind.config = {
 }
 </script>
 <style>
-  :root{
-    --control-h: 44px;
-    --radius: 12px;
-  }
-
-  /* Fondo + overlay */
+  :root{ --control-h:44px; --radius:12px; }
   body{
     background:
       radial-gradient(1200px 500px at 50% -10%, rgba(58,124,255,.18), transparent 55%),
@@ -33,84 +28,54 @@ tailwind.config = {
       url('yo.jpg') center / cover fixed no-repeat;
     color:#e9edf3; min-height:100vh;
   }
-
-  /* Cards */
-  .card{
-    border:1px solid rgba(255,255,255,.14);
-    background:rgba(20,22,26,.34);
-    border-radius:16px;
-    box-shadow: 0 14px 34px rgba(0,0,0,.32);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  /* Controles */
+  .card{ border:1px solid rgba(255,255,255,.14); background:rgba(20,22,26,.34); border-radius:16px; box-shadow:0 14px 34px rgba(0,0,0,.32); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
   .control{ height:var(--control-h); min-height:var(--control-h); border-radius:var(--radius); font-size:14px; }
-  .field{
-    width:100%; background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.18);
-    padding:0 .9rem; color:#e6edf8; outline:none;
-    transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
-  }
-  .field:focus{
-    border-color:rgba(94,148,255,.6);
-    box-shadow:0 0 0 3px rgba(94,148,255,.24);
-    background:rgba(255,255,255,.12);
-  }
-
+  .field{ width:100%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:0 .9rem; color:#e6edf8; outline:none; transition:.15s ease; }
+  .field:focus{ border-color:rgba(94,148,255,.6); box-shadow:0 0 0 3px rgba(94,148,255,.24); background:rgba(255,255,255,.12); }
   .select-wrap{ position:relative; }
-  .select-wrap::after{
-    content:"▾"; position:absolute; right:.7rem; top:50%; transform:translateY(-50%);
-    color:#a7c0ff; font-size:14px; pointer-events:none;
-  }
+  .select-wrap::after{ content:"▾"; position:absolute; right:.7rem; top:50%; transform:translateY(-50%); color:#a7c0ff; font-size:14px; pointer-events:none; }
   select.field{ appearance:none; padding-right:2rem; color-scheme: dark; }
   select.field option{ background:#0b0c10; color:#e5e7eb; }
 
-  /* Botones */
-  .btn{
-    height:var(--control-h); min-height:var(--control-h);
-    border-radius:var(--radius);
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(255,255,255,.10);
-    padding:0 1rem; font-weight:600; letter-spacing:.2px; transition:.18s ease;
-  }
+  .btn{ height:var(--control-h); min-height:var(--control-h); border-radius:var(--radius);
+        border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.10);
+        padding:0 1rem; font-weight:600; letter-spacing:.2px; transition:.18s ease; }
   .btn:hover{ background:rgba(255,255,255,.16); }
   .btn-primary{ background:linear-gradient(180deg,#3a7cff,#2c66e6); border-color:#2c66e6; color:#fff; }
-  .btn-primary:hover{ filter:brightness(1.05); }
+  .btn[disabled]{ opacity:.45; cursor:not-allowed; filter:grayscale(.3); }
 
   /* Modal */
-  .modal-bg{
-    position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:1rem;
-    background:rgba(0,0,0,.72); opacity:0; visibility:hidden; pointer-events:none;
-    transition:opacity .22s ease, visibility .22s ease; z-index:50;
-  }
+  .modal-bg{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:1rem; background:rgba(0,0,0,.72); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .22s ease, visibility .22s ease; z-index:50; }
   .modal-bg.open{ opacity:1; visibility:visible; pointer-events:auto; }
-  .modal{
-    width:96%; max-width:760px; border-radius:18px;
-    border:1px solid rgba(255,255,255,.14); background:#0b0b0c;
-    transform:translateY(16px) scale(.98); opacity:0;
-    transition:transform .26s ease, opacity .26s ease;
-    max-height:80vh; display:flex; flex-direction:column;
-  }
+  .modal{ width:96%; max-width:920px; border-radius:18px; border:1px solid rgba(255,255,255,.14); background:#0b0b0c; transform:translateY(16px) scale(.98); opacity:0; transition:transform .26s ease, opacity .26s ease; max-height:82vh; display:flex; flex-direction:column; }
   .modal-bg.open .modal{ transform:translateY(0) scale(1); opacity:1; }
   .modal-header{ padding:14px 18px; border-bottom:1px solid rgba(255,255,255,.08); }
-  .modal-body{
-    padding:16px 18px;
-    overflow-y:auto; overscroll-behavior:contain;
-    scroll-behavior:smooth;
-  }
+  .modal-body{ padding:16px 18px; overflow-y:auto; overscroll-behavior:contain; scroll-behavior:smooth; }
 
-  /* Panel negro con halo azul */
   .panel-base{ border-radius:16px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.05); border:1px solid rgba(94,148,255,.28); }
   .panel-black{
     background:
       radial-gradient(1200px 400px at 50% -10%, rgba(58,124,255,.10), transparent 60%),
       linear-gradient(135deg, rgba(12,14,18,.98), rgba(10,12,16,.98));
   }
-
   table{width:100%; border-collapse:separate; border-spacing:0 .5rem}
   td,th{padding:.45rem .6rem}
   th{font-size:.78rem; color:#a9b7c7; text-align:left}
+
+  /* Carrusel (sin texto “desliza”) */
+  .carousel{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding-bottom:.25rem; }
+  .carousel::-webkit-scrollbar{ height:6px }
+  .carousel::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.15); border-radius:999px }
+  .slide{ scroll-snap-align:center; flex:0 0 86%; }
+  @media (min-width: 768px){ .slide{ flex-basis: 32%; } }
+
+  /* FIX select en móviles */
+  @media (max-width: 640px) {
+    .select-wrap::after { content: none !important; }
+    select.field{ appearance:auto !important; -webkit-appearance:menulist !important; padding-right:.75rem !important; background-image:none !important; }
+    select.field option{ background:initial !important; color:initial !important; }
+    .select-wrap{ isolation:isolate; z-index:1; }
+  }
 </style>
 </head>
 <body class="selection:bg-brand-500/30">
@@ -131,14 +96,14 @@ tailwind.config = {
   <main class="max-w-6xl mx-auto px-4 py-8 min-h-screen">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Entrada -->
-      <section class="card p-5 space-y-5" aria-labelledby="datos-title">
+      <section id="formSection" class="card p-5 space-y-5" aria-labelledby="datos-title">
         <h2 id="datos-title" class="font-semibold text-lg">Datos</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label for="sex" class="text-sm text-slate-300">Sexo</label>
             <div class="select-wrap">
-              <select id="sex" class="field control">
+              <select id="sex" class="field control" required>
                 <option value="male">Hombre</option>
                 <option value="female">Mujer</option>
               </select>
@@ -146,18 +111,18 @@ tailwind.config = {
           </div>
           <div>
             <label for="age" class="text-sm text-slate-300">Edad (años)</label>
-            <input id="age" type="number" min="15" max="75" placeholder="Ingresa tu edad" class="field control" />
+            <input id="age" type="number" inputmode="numeric" min="15" max="75" step="1" placeholder="Ingresa tu edad" class="field control" required />
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label for="weight" class="text-sm text-slate-300">Peso (kg)</label>
-            <input id="weight" type="number" min="35" max="250" placeholder="Peso en kg" class="field control" />
+            <input id="weight" type="number" inputmode="decimal" min="35" max="250" step="0.1" placeholder="Peso en kg" class="field control" required />
           </div>
           <div>
             <label for="heightCm" class="text-sm text-slate-300">Estatura (cm)</label>
-            <input id="heightCm" type="number" min="140" max="220" placeholder="Altura en cm" class="field control" />
+            <input id="heightCm" type="number" inputmode="decimal" min="140" max="220" step="0.1" placeholder="Altura en cm" class="field control" required />
           </div>
         </div>
 
@@ -165,7 +130,7 @@ tailwind.config = {
           <div>
             <label for="activity" class="text-sm text-slate-300">Nivel de actividad</label>
             <div class="select-wrap">
-              <select id="activity" class="field control">
+              <select id="activity" class="field control" required>
                 <option value="1.2">Sedentario (poco o nada)</option>
                 <option value="1.375">Ligero (1–3 días/sem)</option>
                 <option value="1.55">Moderado (3–5 días/sem)</option>
@@ -177,7 +142,7 @@ tailwind.config = {
           <div>
             <label for="goal" class="text-sm text-slate-300">Objetivo</label>
             <div class="select-wrap">
-              <select id="goal" class="field control">
+              <select id="goal" class="field control" required>
                 <option value="maintain">Mantener</option>
                 <option value="cut">Bajar grasa (–10%)</option>
                 <option value="bulk">Ganar masa (+10%)</option>
@@ -186,12 +151,14 @@ tailwind.config = {
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
           <button id="calcBtn" class="btn btn-primary">Calcular</button>
-          <button id="detailsBtn" class="btn">Ver detalles</button>
+          <button id="detailsBtn" class="btn" disabled>Ver detalles</button>
+          <button id="imcBtn" class="btn">IMC</button>
+          <button id="clearBtn" class="btn" disabled>Limpiar</button>
         </div>
 
-        <p class="text-xs text-slate-300/85">Uso recomendado para adultos sanos. Si tienes condiciones médicas (p. ej., embarazo, riñón), consulta a un profesional de salud.</p>
+        <p class="text-xs text-slate-300/85">Uso recomendado para adultos sanos. Si tienes condiciones médicas, consulta a un profesional de salud.</p>
       </section>
 
       <!-- Resultados -->
@@ -244,7 +211,7 @@ tailwind.config = {
           <summary class="cursor-pointer text-slate-300">Fuentes y notas</summary>
           <ul class="list-disc pl-5 mt-2 space-y-1">
             <li>Mifflin–St Jeor (1990) para TMB; multiplicador de actividad para GET.</li>
-            <li>Macros orientativas por kg: Mantener 1.8/0.8 g/kg, Déficit 2.2/0.8 g/kg, Superávit 2.0/1.0 g/kg.</li>
+            <li>Macros por kg: Mantener 1.8/0.8 g/kg, Déficit 2.2/0.8 g/kg, Superávit 2.0/1.0 g/kg.</li>
             <li>Ajuste de objetivo estimado: ±10% del mantenimiento.</li>
           </ul>
         </details>
@@ -269,12 +236,14 @@ tailwind.config = {
 
 <!-- ================= LÓGICA ================= -->
 <script>
-/* ========== Utilidades ========== */
+/* ===== Util ===== */
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const toNumber=(v,d=0)=>{const n=Number(String(v).replace(",", "."));return Number.isFinite(n)?n:d;}
 const round=(n,d=0)=>{const p=10**d;return Math.round(n*p)/p;}
+const s = (n)=>new Intl.NumberFormat('es-EC').format(n);
 
-/* ========== Inputs ========== */
+/* ===== Inputs ===== */
+const formSection=document.getElementById('formSection');
 const sex=document.getElementById('sex');
 const age=document.getElementById('age');
 const weight=document.getElementById('weight');
@@ -282,9 +251,10 @@ const heightCm=document.getElementById('heightCm');
 const activity=document.getElementById('activity');
 const goal=document.getElementById('goal');
 
-/* ========== UI ========== */
 const calcBtn=document.getElementById('calcBtn');
 const detailsBtn=document.getElementById('detailsBtn');
+const imcBtn=document.getElementById('imcBtn');
+const clearBtn=document.getElementById('clearBtn');
 
 const eqUsed=document.getElementById('eqUsed');
 const tmbEl=document.getElementById('tmb');
@@ -298,17 +268,16 @@ const pInfo=document.getElementById('pInfo');
 const fInfo=document.getElementById('fInfo');
 const cInfo=document.getElementById('cInfo');
 
-/* ========== Modal ========== */
+/* ===== Modal ===== */
 const modalBg=document.getElementById('modalBg');
 const modalTitle=document.getElementById('modalTitle');
 const modalContent=document.getElementById('modalContent');
 const closeModal=document.getElementById('closeModal');
 
-/* ========== Helpers ========= */
+/* ===== Helpers ===== */
 function weightKg(){return clamp(toNumber(weight.value,0), 35, 250);}
 function heightCmVal(){return clamp(toNumber(heightCm.value,0), 140, 220);}
 
-/* Split entero que suma exacto */
 function splitEven(total, parts){
   const base = Math.floor(total/parts);
   const arr  = Array(parts).fill(base);
@@ -317,7 +286,368 @@ function splitEven(total, parts){
   return arr;
 }
 
-/* ========== Cálculos base ========== */
+/* ===== UI ===== */
+function setInputsEnabled(enabled){
+  [sex,age,weight,heightCm,activity,goal].forEach(el=>{ el.disabled=!enabled; });
+  formSection.classList.toggle('input-locked', !enabled);
+}
+function setBtnEnabled(btn, enabled){ btn.disabled=!enabled; }
+function resetOutputs(){
+  tmbEl.textContent='0'; getEl.textContent='0'; targetKcalEl.textContent='0';
+  adjText.textContent='—';
+  pGrams.textContent='0 g'; fGrams.textContent='0 g'; cGrams.textContent='0 g';
+  pInfo.textContent='—'; fInfo.textContent='—'; cInfo.textContent='—';
+}
+function resetForm(){
+  [age,weight,heightCm].forEach(el=>el.value='');
+  sex.value='male'; activity.value='1.2'; goal.value='maintain';
+  resetOutputs();
+  window.__plan = null;
+  setInputsEnabled(true);
+  setBtnEnabled(calcBtn,true);
+  setBtnEnabled(detailsBtn,false);
+  setBtnEnabled(clearBtn,false);
+}
+function openModal(title, html){
+  modalTitle.textContent = title;
+  modalContent.innerHTML = html;
+  modalBg.classList.add('open');
+  modalBg.setAttribute('aria-hidden','false');
+}
+function closeModalFn(){
+  modalBg.classList.remove('open');
+  modalBg.setAttribute('aria-hidden','true');
+  if(window.__plan){ setBtnEnabled(clearBtn,true); }
+}
+function openAlert(title, messages){
+  const list = Array.isArray(messages) ? `<ul class="list-disc pl-6 mt-2 space-y-1">${messages.map(m=>`<li>${m}</li>`).join('')}</ul>` : `<p class="mt-2">${messages}</p>`;
+  const html = `
+    <div class="panel-base panel-black">
+      <div class="text-lg font-semibold text-brand-400">${title}</div>
+      ${list}
+      <div class="text-xs text-slate-400 mt-3">Corrige y vuelve a intentar.</div>
+    </div>`;
+  openModal('Atención', html);
+}
+
+/* ===== Validaciones ===== */
+function validateForm(){
+  const errs=[];
+  const ageRaw=age.value?.trim(), weightRaw=weight.value?.trim(), heightRaw=heightCm.value?.trim();
+  const a=Number(ageRaw), w=Number(weightRaw), h=Number(heightRaw);
+
+  if(!ageRaw) errs.push('Edad: escribe un número (15–75).');
+  else if(!Number.isFinite(a) || !Number.isInteger(a)) errs.push('Edad: usa un número entero.');
+  else if(a<15 || a>75) errs.push('Edad fuera de rango (15–75).');
+
+  if(!weightRaw) errs.push('Peso: escribe un número (35–250 kg).');
+  else if(!Number.isFinite(w)) errs.push('Peso inválido.');
+  else if(w<35 || w>250) errs.push('Peso fuera de rango (35–250 kg).');
+
+  if(!heightRaw) errs.push('Estatura: escribe un número (140–220 cm).');
+  else if(!Number.isFinite(h)) errs.push('Estatura inválida.');
+  else if(h<140 || h>220) errs.push('Estatura fuera de rango (140–220 cm).');
+
+  if(!activity.value) errs.push('Selecciona tu nivel de actividad.');
+  if(!goal.value) errs.push('Selecciona tu objetivo.');
+
+  return errs;
+}
+
+/* ===== Input guards ===== */
+function attachNumericGuards(el, {integer=false, min=null, max=null}={}){
+  el.addEventListener('keydown', (e)=>{ if(['e','E','+','-'].includes(e.key)) e.preventDefault(); });
+  el.addEventListener('input', ()=>{ el.value = el.value.replace(',', '.'); });
+  el.addEventListener('blur', ()=>{
+    let v = Number(el.value);
+    if(!Number.isFinite(v)){ el.value=''; return; }
+    if(min!=null && v<min) v=min;
+    if(max!=null && v>max) v=max;
+    if(integer) v = Math.round(v);
+    el.value = String(v);
+  });
+}
+attachNumericGuards(age, {integer:true, min:15, max:75});
+attachNumericGuards(weight, {integer:false, min:35, max:250});
+attachNumericGuards(heightCm, {integer:false, min:140, max:220});
+
+/* Enter = calcular */
+[sex,age,weight,heightCm,activity,goal].forEach(el=>{
+  el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); calcBtn.click(); } });
+});
+
+/* ===== DB alimentos ===== */
+const FOOD_DB = [
+  // Carbos
+  {id:'arroz', grupo:'Carbo', nombre:'Arroz blanco cocido', racionDesc:'120 g', peso:120, P:3, F:0, C:34},
+  {id:'camote', grupo:'Carbo', nombre:'Camote cocido', racionDesc:'150 g', peso:150, P:2, F:0, C:30},
+  {id:'yuca', grupo:'Carbo', nombre:'Yuca cocida', racionDesc:'120 g', peso:120, P:1, F:0, C:28},
+  {id:'avena', grupo:'Carbo', nombre:'Avena en hojuelas', racionDesc:'40 g', peso:40, P:5, F:3, C:27},
+  {id:'pan', grupo:'Carbo', nombre:'Pan tajado', racionDesc:'2 rebanadas (60 g)', peso:60, P:6, F:2, C:28},
+  {id:'platano', grupo:'Carbo', nombre:'Plátano mediano', racionDesc:'1 unidad (~120 g)', peso:120, P:1, F:0, C:27},
+  // Proteína
+  {id:'pollo', grupo:'Proteína', nombre:'Pechuga de pollo', racionDesc:'100 g', peso:100, P:20, F:4, C:0},
+  {id:'atun', grupo:'Proteína', nombre:'Atún en agua', racionDesc:'1 lata (120 g esc.)', peso:120, P:22, F:1, C:0},
+  {id:'yogur', grupo:'Proteína', nombre:'Yogur griego natural', racionDesc:'200 g', peso:200, P:20, F:0, C:6},
+  {id:'claras', grupo:'Proteína', nombre:'Claras de huevo', racionDesc:'5 unidades', peso:165, P:17, F:0, C:1},
+  // Grasas
+  {id:'aceite', grupo:'Grasa', nombre:'Aceite de oliva', racionDesc:'1 cda (15 ml)', peso:15, P:0, F:10, C:0},
+  {id:'aguacate', grupo:'Grasa', nombre:'Aguacate', racionDesc:'75 g', peso:75, P:1, F:10, C:2},
+  {id:'mani', grupo:'Grasa', nombre:'Maní', racionDesc:'15 g', peso:15, P:4, F:8, C:3}
+];
+const kcalFrom=(P,F,C)=> P*4 + F*9 + C*4;
+const P_SOURCES = ['pollo','atun','claras','yogur'];
+const F_SOURCES = ['aceite','aguacate','mani'];
+const C_SOURCES = ['arroz','yuca','avena','pan','camote','platano'];
+
+/* ===== Resumen ===== */
+function simpleResumenHTML(plan){
+  return `
+    <div class="panel-base panel-black">
+      <h4 class="font-semibold text-slate-100">Tu plan en pocas palabras</h4>
+      <p class="mt-2"><b>Calorías:</b> <span class="px-2 py-0.5 rounded-full border border-white/20">${s(Math.round(plan.target))} kcal</span> (${plan.label.toLowerCase()}).</p>
+      <p><b>Macros/día:</b> ${s(plan.pG)} g proteína · ${s(plan.fG)} g grasa · ${s(plan.cG)} g carbo.</p>
+      ${plan.safetyMsgs.length ? `<div class="text-xs text-amber-300/90 mt-2">${plan.safetyMsgs.map(m=>`<div>⚠️ ${m}</div>`).join('')}</div>` : ''}
+      <div class="text-slate-400 text-sm mt-2">${plan.weeklyText}</div>
+    </div>`;
+}
+
+/* ===== Carrusel ===== */
+function alimentosCarouselHTML(){
+  const groups = [
+    {g:'Carbo', title:'Carbo · aportes por ración'},
+    {g:'Proteína', title:'Proteína · aportes por ración'},
+    {g:'Grasa', title:'Grasa · aportes por ración'}
+  ];
+  const slides = groups.map(({g,title})=>{
+    const rows = FOOD_DB.filter(x=>x.grupo===g).map(x=>{
+      const kcal = kcalFrom(x.P,x.F,x.C);
+      const macroTxt = `${x.P}P · ${x.F}G · ${x.C}C`;
+      return `<tr class="hover:bg-white/5">
+        <td class="rounded-l-lg">${x.nombre}</td>
+        <td>${x.racionDesc}</td>
+        <td>${macroTxt}</td>
+        <td class="rounded-r-lg">${s(kcal)} kcal</td>
+      </tr>`;
+    }).join('');
+    return `
+      <div class="slide">
+        <div class="panel-base panel-black">
+          <div class="font-semibold text-slate-100 mb-2">${title}</div>
+          <div class="overflow-x-auto">
+            <table>
+              <thead><tr><th>Alimento</th><th>Ración</th><th>Macros (g)</th><th>Kcal</th></tr></thead>
+              <tbody class="text-slate-200">${rows}</tbody>
+            </table>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+  return `
+    <div class="panel-base panel-black">
+      <h4 class="font-semibold text-slate-100 mb-2">Aportes por ración</h4>
+      <div class="carousel">${slides}</div>
+    </div>`;
+}
+
+/* ===== Utilidades de armado ===== */
+function sumMacros(items){
+  return items.reduce((acc,it)=>{
+    const f = FOOD_DB.find(x=>x.id===it.id);
+    const q = it.qty;
+    acc.P += f.P*q; acc.F += f.F*q; acc.C += f.C*q; acc.kcal += kcalFrom(f.P*q, f.F*q, f.C*q);
+    return acc;
+  }, {P:0,F:0,C:0,kcal:0});
+}
+function errorMetric(cur,t){
+  const dP=Math.abs(t.P-cur.P), dF=Math.abs(t.F-cur.F), dC=Math.abs(t.C-cur.C), dK=Math.abs(t.kcal-cur.kcal);
+  return 4*dP + 4*dF + 2*dC + 0.5*(dK/2);
+}
+function addQty(items,id,step){ const it=items.find(x=>x.id===id); if(it) it.qty=round(it.qty+step,2); else items.push({id,qty:step}); }
+function subQty(items,id,step){
+  const it=items.find(x=>x.id===id);
+  if(it){ it.qty=round(Math.max(0,it.qty-step),2); if(it.qty===0) items.splice(items.indexOf(it),1); }
+}
+function cloneItems(items){ return items.map(x=>({id:x.id, qty:x.qty})); }
+function bestSource(list, macro){
+  const data = list.map(id=>{const f=FOOD_DB.find(x=>x.id===id); return {id, val: macro==='P'?f.P: macro==='F'?f.F:f.C};})
+                   .sort((a,b)=>b.val-a.val);
+  return data[0]?.id || list[0];
+}
+
+/* ===== Ajuste por comida con pasos finos ===== */
+function greedyAdjust(items, targets){
+  // pasos finos para clavar macros y kcal
+  const steps=[1,0.5,0.25,0.1,-0.1,-0.25,-0.5,-1];
+  const groups=[
+    {macro:'P', ids:P_SOURCES},
+    {macro:'F', ids:F_SOURCES},
+    {macro:'C', ids:C_SOURCES}
+  ];
+  let guard=0;
+  while(guard++<600){
+    const cur=sumMacros(items);
+    if(Math.abs(targets.P-cur.P)<=0.3 && Math.abs(targets.F-cur.F)<=0.3 &&
+       Math.abs(targets.C-cur.C)<=1.0 && Math.abs(targets.kcal-cur.kcal)<=8) break;
+
+    let bestDelta=0, bestChange=null, curErr=errorMetric(cur,targets);
+
+    for(const g of groups){
+      const id = items.find(x=>g.ids.includes(x.id))?.id || bestSource(g.ids, g.macro);
+      for(const st of steps){
+        const tmp=cloneItems(items);
+        if(st>0) addQty(tmp,id,st); else subQty(tmp,id,-st);
+        const e = errorMetric(sumMacros(tmp), targets);
+        const delta = curErr - e;
+        if(delta>bestDelta){ bestDelta=delta; bestChange={id,st}; }
+      }
+    }
+
+    if(bestChange){ 
+      if(bestChange.st>0) addQty(items,bestChange.id,bestChange.st); else subQty(items,bestChange.id,-bestChange.st);
+    } else break;
+  }
+  return items.filter(it=>it.qty>0);
+}
+
+/* Presets de variedad */
+function buildMealPreset(i){
+  if(i===0) return {carb:['avena','platano'], prot:['claras','yogur'], fat:['aguacate']};
+  if(i===1) return {carb:['arroz'], prot:['pollo'], fat:['aceite']};
+  return {carb:['yuca','pan'], prot:['atun','yogur'], fat:['aguacate','aceite']};
+}
+
+/* Construcción de una comida */
+function buildOneMeal(i, target){
+  const preset = buildMealPreset(i);
+  const items = [];
+  if(preset.prot[0]) items.push({id:preset.prot[0], qty:1});
+  if(preset.fat[0])  items.push({id:preset.fat[0],  qty:1});
+  if(preset.carb[0]) items.push({id:preset.carb[0], qty:1});
+
+  greedyAdjust(items, {P:target.p, F:target.f, C:target.c, kcal:target.kcal});
+  const totals = sumMacros(items);
+  return {items, totals};
+}
+
+function mealLabel(i){ return ['Desayuno','Almuerzo','Cena'][i] || `Comida ${i+1}`; }
+function formatQty(q){
+  const w = Math.floor(q), f = round(q-w,2);
+  if(f===0.5 && w>0) return `${w}½×`;
+  if(f===0.5 && w===0) return `½×`;
+  if(f===0.25) return `${w>0? w+'':''}¼×`.trim();
+  if(f===0.75) return `${w>0? w+'':''}¾×`.trim();
+  return `${round(q,2)}×`;
+}
+function describeItem(it){
+  const f = FOOD_DB.find(x=>x.id===it.id);
+  const pesoTxt = f.peso ? ` · ${s(Math.round(f.peso*it.qty))} g` : '';
+  return `${formatQty(it.qty)} ${f.nombre}${pesoTxt}`;
+}
+
+/* Reconciliación final del día */
+function reconcileDay(built, dayTargets){
+  let guard=0;
+  while(guard++<600){
+    const sum = built.reduce((a,b)=>({P:a.P+b.totals.P, F:a.F+b.totals.F, C:a.C+b.totals.C, kcal:a.kcal+b.totals.kcal}),
+                             {P:0,F:0,C:0,kcal:0});
+    const dP=dayTargets.P-sum.P, dF=dayTargets.F-sum.F, dC=dayTargets.C-sum.C, dK=dayTargets.kcal-sum.kcal;
+    if(Math.abs(dP)<=0.3 && Math.abs(dF)<=0.3 && Math.abs(dC)<=1.0 && Math.abs(dK)<=8) break;
+
+    // macro con mayor desajuste relativo
+    const targetMacro = Math.abs(dP)>=Math.max(Math.abs(dF),Math.abs(dC)) ? 'P'
+                        : (Math.abs(dF)>=Math.abs(dC) ? 'F' : 'C');
+
+    // elegimos comida con más margen y aplicamos paso fino
+    let idx = 0; let best = -Infinity;
+    for(let i=0;i<built.length;i++){
+      const t=built[i].totals;
+      const score = targetMacro==='P'? -Math.abs(dayTargets.P - (sum.P - t.P))
+                  : targetMacro==='F'? -Math.abs(dayTargets.F - (sum.F - t.F))
+                  : -Math.abs(dayTargets.C - (sum.C - t.C));
+      if(score>best){ best=score; idx=i; }
+    }
+
+    const items=built[idx].items;
+    const ids = targetMacro==='P'? P_SOURCES : targetMacro==='F'? F_SOURCES : C_SOURCES;
+    const id = items.find(x=>ids.includes(x.id))?.id || bestSource(ids,targetMacro);
+
+    // tamaño de paso dirigido
+    const stepChoices = [0.5,0.25,0.1];
+    let applied=false;
+    for(const sc of stepChoices){
+      const st = (targetMacro==='C' ? (dC>0?sc:-sc) : (targetMacro==='P' ? (dP>0?sc:-sc) : (dF>0?sc:-sc)));
+      const tmp = items.map(x=>({...x}));
+      if(st>0) addQty(tmp,id,st); else subQty(tmp,id,-st);
+      const after = sumMacros(tmp);
+      // aceptamos si reduce el error global del día
+      const curDay = {P:sum.P, F:sum.F, C:sum.C, kcal:sum.kcal};
+      const newDay = {P:sum.P - built[idx].totals.P + after.P,
+                      F:sum.F - built[idx].totals.F + after.F,
+                      C:sum.C - built[idx].totals.C + after.C,
+                      kcal:sum.kcal - built[idx].totals.kcal + after.kcal};
+      const curErr = errorMetric(curDay, dayTargets);
+      const newErr = errorMetric(newDay, dayTargets);
+      if(newErr < curErr){
+        if(st>0) addQty(items,id,sc); else subQty(items,id,sc);
+        built[idx].totals = sumMacros(items);
+        applied=true; break;
+      }
+    }
+    if(!applied) break;
+  }
+  return built;
+}
+
+/* HTML del día */
+function buildSampleDayHTML(plan){
+  const meals = plan.meals3;
+  let built = meals.map((m,i)=> buildOneMeal(i,{p:m.p, f:m.f, c:m.c, kcal:m.kcal}) );
+  built = reconcileDay(built, {P:plan.pG, F:plan.fG, C:plan.cG, kcal:plan.target});
+
+  const cards = built.map((bm,i)=>{
+    const list = bm.items.map(it=>{
+      const f=FOOD_DB.find(x=>x.id===it.id);
+      const macros = `${Math.round(f.P*it.qty)}P · ${Math.round(f.F*it.qty)}G · ${Math.round(f.C*it.qty)}C`;
+      const kcal = kcalFrom(f.P*it.qty, f.F*it.qty, f.C*it.qty);
+      return `<li class="flex items-center justify-between gap-2">
+        <span>${describeItem(it)}</span>
+        <span class="text-slate-300 text-sm">${macros} · ${s(Math.round(kcal))} kcal</span>
+      </li>`;
+    }).join('');
+    const t = bm.totals;
+    return `
+      <div class="panel-base panel-black">
+        <div class="font-semibold text-slate-100">${mealLabel(i)} · objetivo ≈ ${s(meals[i].kcal)} kcal</div>
+        <ul class="list-disc pl-5 mt-2 space-y-1">${list}</ul>
+        <div class="text-sm text-slate-300 mt-3">
+          <b>Total comida (ajustada):</b> ${s(Math.round(t.kcal))} kcal · ${Math.round(t.P)}P · ${Math.round(t.F)}G · ${Math.round(t.C)}C
+        </div>
+      </div>`;
+  }).join('');
+
+  // Totales del día
+  const day = built.reduce((acc,b)=>{acc.P+=b.totals.P; acc.F+=b.totals.F; acc.C+=b.totals.C; acc.kcal+=b.totals.kcal; return acc;},{P:0,F:0,C:0,kcal:0});
+
+  return `
+    <div class="panel-base panel-black">
+      <h4 class="font-semibold text-slate-100 mb-2">Plan de un día (ajustado a tus macros)</h4>
+      <div class="grid md:grid-cols-3 gap-4">${cards}</div>
+      <div class="text-sm text-slate-300 mt-3">
+        <b>Totales del día (ajustados):</b> ${s(Math.round(day.kcal))} kcal · ${Math.round(day.P)}P · ${Math.round(day.F)}G · ${Math.round(day.C)}C
+      </div>
+    </div>`;
+}
+
+/* Render Detalles */
+function renderDetails(plan){
+  const simple = simpleResumenHTML(plan);
+  const alimentos = alimentosCarouselHTML(); // (encabezado sin “desliza”)
+  const sampleDay = buildSampleDayHTML(plan);
+  return `${simple}${alimentos}${sampleDay}`;
+}
+
+/* ===== Cálculo principal ===== */
 function calcTMB(){
   const a=clamp(toNumber(age.value,0), 15, 75);
   const w=weightKg();
@@ -325,160 +655,28 @@ function calcTMB(){
   eqUsed.textContent='Mifflin–St Jeor';
   return Math.max(0, 10*w + 6.25*h - 5*a + (sex.value==='male'?5:-161));
 }
-function calcGET(tmb){return tmb * toNumber(activity.value,1.2);} // por defecto: primera opción
-
+function calcGET(tmb){return tmb * toNumber(activity.value,1.2);}
 function macrosByGoal(g){
   if(g==='cut')  return {pPerKg:2.2, fPerKg:0.8, adj:-0.10, label:'Déficit 10%'};
   if(g==='bulk') return {pPerKg:2.0, fPerKg:1.0, adj:+0.10, label:'Superávit 10%'};
   return {pPerKg:1.8, fPerKg:0.8, adj:0.0, label:'Mantener (0%)'};
 }
 
-/* ========== Bloques / platos de ejemplo (texto) ========== */
-function blocksGuideHTML(){
-  return `
-  <div class="panel-base panel-black">
-    <h4 class="font-semibold text-slate-100">Bloques de alimentos (guía rápida)</h4>
-    <div class="grid md:grid-cols-3 gap-4 mt-3">
-      <div>
-        <div class="text-slate-200 font-semibold mb-1">Carbo (~25 g C)</div>
-        <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
-          <li>Arroz cocido 85–90 g ≈ 25 C</li>
-          <li>Camote cocido 150 g ≈ 30 C</li>
-          <li>Avena seca 40 g ≈ 27 C</li>
-          <li>Plátano 1 mediano ≈ 27 C</li>
-          <li>Pan 2 rebanadas (60 g) ≈ 30 C</li>
-          <li>Yuca cocida 120 g ≈ 30 C</li>
-        </ul>
-      </div>
-      <div>
-        <div class="text-slate-200 font-semibold mb-1">Proteína (~20 g P)</div>
-        <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
-          <li>Pechuga pollo 100 g ≈ 23–30 P</li>
-          <li>Atún en agua (1 lata) ≈ 28 P</li>
-          <li>Yogur griego 200 g ≈ 20 P</li>
-          <li>Claras 5 u ≈ 18 P</li>
-          <li>Res magra 100 g ≈ 23 P</li>
-        </ul>
-      </div>
-      <div>
-        <div class="text-slate-200 font-semibold mb-1">Grasa (~10 g G)</div>
-        <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
-          <li>Aceite oliva 1 cda (15 ml) ≈ 14 G</li>
-          <li>Aguacate 70–80 g ≈ 10–12 G</li>
-          <li>Maní 15 g ≈ 8 G</li>
-          <li>Yema 1 u ≈ 5 G</li>
-        </ul>
-      </div>
-    </div>
-  </div>`;
-}
-
-/* NUEVO: Menús reales (desayuno/almuerzo/cena) basados en bloques */
-function realMenusHTML(meals3){
-  const nombres = ["Desayuno", "Almuerzo", "Cena"];
-  const cards = meals3.map((m,i)=>{
-    const cBlocks = Math.max(1, Math.round(m.c/25));
-    const pBlocks = Math.max(1, Math.round(m.p/20));
-    const fBlocks = Math.max(1, Math.round(m.f/10));
-    const ejemplo1 = `
-      • Carbo (${cBlocks} bloques): arroz cocido (~90 g x ${cBlocks})<br/>
-      • Proteína (${pBlocks} bloques): pechuga pollo 80–120 g + yogur/claras hasta completar<br/>
-      • Grasa (${fBlocks} bloques): aceite oliva 1 cda ≈ 1 bloque, o aguacate 70–80 g`;
-    const ejemplo2 = `
-      • Carbo (${cBlocks} bloques): camote/yuca (~120–150 g por bloque), fruta si falta<br/>
-      • Proteína (${pBlocks} bloques): atún (1 lata ≈ 1–1.5 bloques) + claras<br/>
-      • Grasa (${fBlocks} bloques): maní 15 g ≈ 0.8 bloque · ajusta con aceite`;
-    return `
-      <div class="panel-base panel-black">
-        <div class="font-semibold text-slate-100">${nombres[i]} · objetivo ≈ ${m.kcal} kcal</div>
-        <div class="text-sm text-slate-300 mt-1">Elige: <b>${cBlocks}</b> bloques de carbo · <b>${pBlocks}</b> de proteína · <b>${fBlocks}</b> de grasa.</div>
-        <div class="text-xs text-slate-400 mt-2">1 bloque: 25 g C · 20 g P · 10 g G.</div>
-        <div class="mt-3 text-sm space-y-2">
-          <div><span class="text-slate-200 font-medium">Ejemplo A:</span><br/>${ejemplo1}</div>
-          <div><span class="text-slate-200 font-medium">Ejemplo B:</span><br/>${ejemplo2}</div>
-        </div>
-        <div class="text-xs text-slate-400 mt-2">Tip: mueve más carbos alrededor del entrenamiento.</div>
-      </div>`;
-  }).join('');
-  return `<h4 class="font-semibold text-slate-100 mt-4">Tres menús reales (listos para usar)</h4>
-          <div class="grid md:grid-cols-3 gap-4">${cards}</div>`;
-}
-
-function examplePlatesHTML(mealTargets){
-  const cards = mealTargets.map((m,i)=>`
-    <div class="panel-base panel-black">
-      <div class="font-semibold text-slate-100 mb-1">Comida ${i+1} · objetivo ≈ ${m.kcal} kcal</div>
-      <ul class="list-disc pl-5 text-slate-300 text-sm space-y-1">
-        <li>Carbos base: combina 3–4 bloques (arroz/camote/avena/fruta) ≈ ${m.c} g C</li>
-        <li>Proteína: 2 bloques (pollo/atún/yogur) ≈ ${m.p} g P</li>
-        <li>Grasa: 1–2 bloques (aceite/aguacate) ≈ ${m.f} g G</li>
-      </ul>
-      <div class="text-xs text-slate-400 mt-2">Mueve más carbos si entrenas justo antes/después.</div>
-    </div>`).join('');
-  return `<div class="grid md:grid-cols-3 gap-4">${cards}</div>`;
-}
-
-/* Texto del modal */
-function renderDetails(plan){
-  const {label, target, pG, fG, cG, meals3, weeklyText, safetyMsgs} = plan;
-
-  const daily =
-    `<div class="panel-base panel-black">
-      <p><b>Tu objetivo diario:</b> <b>${Math.round(target)} kcal</b> (${label.toLowerCase()}).</p>
-      <p><b>Macros diarios exactos:</b> <b>${Math.round(pG)} g proteína</b> · <b>${Math.round(fG)} g grasa</b> · <b>${Math.round(cG)} g carbohidratos</b>.</p>
-      <p><b>Plan en 3 comidas (exacto):</b> tabla siguiente.</p>
-      ${safetyMsgs.length? `<div class="text-xs text-amber-300/90 mt-2">${safetyMsgs.map(m=>`<div>${m}</div>`).join('')}</div>`:''}
-      <div class="text-slate-400 text-sm mt-2">${weeklyText}</div>
-    </div>`;
-
-  const rows = meals3.map((m,i)=>`
-    <tr class="hover:bg-white/5">
-      <td class="rounded-l-lg">Comida ${i+1}</td>
-      <td>${m.kcal}</td>
-      <td>${m.p} g</td>
-      <td>${m.f} g</td>
-      <td class="rounded-r-lg">${m.c} g</td>
-    </tr>`).join('');
-
-  const table =
-    `<div class="panel-base panel-black">
-      <h4 class="font-semibold text-slate-100 mb-2">Distribución exacta (3 comidas)</h4>
-      <div class="overflow-x-auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Comida</th><th>Kcal</th><th>Proteína</th><th>Grasa</th><th>Carbohidratos</th>
-            </tr>
-          </thead>
-          <tbody class="text-slate-200">${rows}</tbody>
-        </table>
-      </div>
-      <div class="text-xs text-slate-400 mt-2">La suma de las 3 comidas coincide EXACTO con tu objetivo diario.</div>
-    </div>`;
-
-  /* ORDEN final en el modal: resumen -> tabla -> bloques -> ideas por comida -> NUEVOS menús reales */
-  return `${daily}
-          ${table}
-          ${blocksGuideHTML()}
-          <h4 class="font-semibold text-slate-100 mt-4">Ideas de platos por comida</h4>
-          ${examplePlatesHTML(meals3)}
-          ${realMenusHTML(meals3)}`;
-}
-
-/* ========== Cálculo principal ========== */
 function compute(){
+  const errs = validateForm();
+  if(errs.length){ openAlert('Completa los datos para calcular', errs); return; }
+
   const TMB=calcTMB();
   const GET=calcGET(TMB);
   const {pPerKg,fPerKg,adj,label}=macrosByGoal(goal.value);
   const target = GET*(1+adj);
-
   const kg = weightKg();
 
   // Macros base
   let pG = kg * pPerKg;
   let fG = kg * fPerKg;
 
-  // Buenas prácticas
+  // Límites sanos
   const pMin = 1.6 * kg, pMax = 2.4 * kg;
   pG = clamp(pG, pMin, pMax);
   const minFatByPct = (target * 0.20) / 9;
@@ -489,7 +687,6 @@ function compute(){
   let kcalP = pG*4, kcalF = fG*9;
   let cG = (target - (kcalP + kcalF))/4;
 
-  // Si carbs negativos, baja proteína hacia 1.6 g/kg
   if (cG < 0){
     const kcalDef = -cG*4;
     const reducibleProt = pG - pMin;
@@ -499,7 +696,7 @@ function compute(){
     cG = (target - (kcalP + kcalF))/4;
   }
 
-  // Redondeo a enteros
+  // Redondeos enteros para mostrar
   const totalKcal = Math.round(target);
   const totalP = Math.round(pG);
   const totalF = Math.round(fG);
@@ -507,20 +704,20 @@ function compute(){
 
   // Alertas
   const safetyMsgs=[];
-  if(target < TMB) safetyMsgs.push('⚠️ Objetivo por debajo de tu TMB. Sube calorías.');
+  if(target < TMB) safetyMsgs.push('Objetivo por debajo de tu TMB. Sube calorías.');
   const fatPct = ((totalF*9)/(totalKcal||1))*100;
-  if(fatPct < 20) safetyMsgs.push('ℹ️ La grasa queda < 20% de las kcal. Sube un poco.');
-  if(totalC <= 0) safetyMsgs.push('⚠️ Carbohidratos ≈ 0 g. Ajusta macros o kcal.');
+  if(fatPct < 20) safetyMsgs.push('La grasa queda < 20% de las kcal. Sube un poco.');
+  if(totalC <= 0) safetyMsgs.push('Carbohidratos ≈ 0 g. Ajusta macros o kcal.');
 
-  // Tarjetas
-  tmbEl.textContent=round(TMB);
-  getEl.textContent=round(GET);
-  targetKcalEl.textContent=totalKcal;
-  adjText.textContent=`${label}. Mantenimiento ${round(GET)} kcal → objetivo ${totalKcal} kcal/día.`;
-  pGrams.textContent=`${totalP} g`;  fGrams.textContent=`${totalF} g`;  cGrams.textContent=`${totalC} g`;
+  // UI
+  tmbEl.textContent=s(Math.round(TMB));
+  getEl.textContent=s(Math.round(GET));
+  targetKcalEl.textContent=s(totalKcal);
+  adjText.textContent=`${label}. Mantenimiento ${s(Math.round(GET))} kcal → objetivo ${s(totalKcal)} kcal/día.`;
+  pGrams.textContent=`${s(totalP)} g`;  fGrams.textContent=`${s(totalF)} g`;  cGrams.textContent=`${s(totalC)} g`;
   const kgSafe = Math.max(kg,1);
-  pInfo.textContent=`${(totalP/kgSafe).toFixed(2)} g/kg × ${round(kg)} kg = ${totalP} g`;
-  fInfo.textContent=`${(totalF/kgSafe).toFixed(2)} g/kg × ${round(kg)} kg = ${totalF} g`;
+  pInfo.textContent=`${(totalP/kgSafe).toFixed(2)} g/kg × ${s(Math.round(kg))} kg = ${s(totalP)} g`;
+  fInfo.textContent=`${(totalF/kgSafe).toFixed(2)} g/kg × ${s(Math.round(kg))} kg = ${s(totalF)} g`;
   cInfo.textContent=`(Objetivo − proteínas − grasas) ÷ 4`;
 
   // Estimado semanal
@@ -531,56 +728,154 @@ function compute(){
     ? 'Mantenimiento: cambios de peso pequeños son normales.'
     : `Estimado de cambio: ${weeklyKg>=0?'+':''}${round(weeklyKg,2)} kg/sem (≈ ${round(pctBody,2)}%/sem). Recomendado: 0.25–0.5%/sem.`;
 
-  /* Plan EXACTO en 3 comidas */
-  const meals3 = (()=>{
-    const kcal = splitEven(totalKcal, 3);
-    let p = splitEven(totalP, 3);
-    let f = splitEven(totalF, 3);
-    let c = splitEven(totalC, 3);
+  /* Reparto exacto a 3 comidas en kcal y macros */
+  const kcal = splitEven(totalKcal, 3);
+  let p = splitEven(totalP, 3);
+  let f = splitEven(totalF, 3);
+  let c = splitEven(totalC, 3);
 
-    for(let i=0;i<3;i++){
-      let kcalNow = 4*p[i] + 9*f[i] + 4*c[i];
-      while(kcalNow !== kcal[i]){
-        if(kcalNow < kcal[i]){
-          if(kcal[i] - kcalNow >= 4){ c[i] += 1; }
-          else { f[i] += 1; c[i] = Math.max(0, c[i]-2); }
-        }else{
-          if(kcalNow - kcal[i] >= 4 && c[i] > 0){ c[i] -= 1; }
-          else if(f[i] > 0){ f[i] -= 1; c[i] += 2; }
-          else if(p[i] > 0){ p[i] -= 1; }
-        }
-        kcalNow = 4*p[i] + 9*f[i] + 4*c[i];
+  for(let i=0;i<3;i++){
+    let kcalNow = 4*p[i] + 9*f[i] + 4*c[i];
+    while(kcalNow !== kcal[i]){
+      if(kcalNow < kcal[i]){
+        if(kcal[i] - kcalNow >= 4){ c[i] += 1; }
+        else { f[i] += 1; c[i] = Math.max(0, c[i]-2); }
+      }else{
+        if(kcalNow - kcal[i] >= 4 && c[i] > 0){ c[i] -= 1; }
+        else if(f[i] > 0){ f[i] -= 1; c[i] += 2; }
+        else if(p[i] > 0){ p[i] -= 1; }
       }
+      kcalNow = 4*p[i] + 9*f[i] + 4*c[i];
     }
-    return [{kcal:kcal[0], p:p[0], f:f[0], c:c[0]},
-            {kcal:kcal[1], p:p[1], f:f[1], c:c[1]},
-            {kcal:kcal[2], p:p[2], f:f[2], c:c[2]}];
-  })();
+  }
+  const meals3 = [{kcal:kcal[0], p:p[0], f:f[0], c:c[0]},
+                  {kcal:kcal[1], p:p[1], f:f[1], c:c[1]},
+                  {kcal:kcal[2], p:p[2], f:f[2], c:c[2]}];
 
   window.__plan = {label, target: totalKcal, pG: totalP, fG: totalF, cG: totalC, meals3, weeklyText, safetyMsgs};
+
+  setInputsEnabled(false);
+  setBtnEnabled(calcBtn,false);
+  setBtnEnabled(detailsBtn,true);
+  setBtnEnabled(clearBtn,false);
 }
 
-/* ========== Modal helpers ========== */
-function openModal(title, html){
-  modalTitle.textContent = title;
-  modalContent.innerHTML = html;
-  modalBg.classList.add('open');
-  modalBg.setAttribute('aria-hidden','false');
+/* ===== Detalles ===== */
+function openDetails(){
+  if(!window.__plan){
+    openAlert('Primero calcula tu plan', 'Llena todos los campos y presiona «Calcular».');
+    return;
+  }
+  openModal('Tu plan diario', renderDetails(window.__plan));
 }
-function closeModalFn(){ modalBg.classList.remove('open'); modalBg.setAttribute('aria-hidden','true'); }
 
-/* ========== Init ========== */
+/* ===== IMC ===== */
+function imcModalHTML(peso, estaturaCm){
+  const pesoVal = (Number.isFinite(peso) && peso>0)? peso : '';
+  const estVal = (Number.isFinite(estaturaCm) && estaturaCm>0)? estaturaCm : '';
+  return `
+    <div class="panel-base panel-black">
+      <h4 class="font-semibold text-slate-100">Calcula tu IMC</h4>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+        <div>
+          <label class="text-sm text-slate-300">Peso (kg)</label>
+          <input id="imcPeso" type="number" class="field control" min="20" max="300" step="0.1" placeholder="Ej. 72.5" value="${pesoVal}">
+        </div>
+        <div>
+          <label class="text-sm text-slate-300">Estatura (cm)</label>
+          <input id="imcEst" type="number" class="field control" min="120" max="230" step="0.1" placeholder="Ej. 175" value="${estVal}">
+        </div>
+      </div>
+      <div class="flex gap-2 mt-3">
+        <button id="imcCalcBtn" class="btn btn-primary">Calcular IMC</button>
+        <button id="imcClearBtn" class="btn">Limpiar</button>
+      </div>
+    </div>
+    <div id="imcResultado" class="panel-base panel-black">
+      <div class="text-sm text-slate-400">Ingresa tus datos y presiona “Calcular IMC”.</div>
+    </div>
+    <div class="text-xs text-slate-400">El IMC es una referencia general; no sustituye evaluación clínica.</div>
+  `;
+}
+function clasificarIMC(bmi){
+  if(bmi < 18.5) return {label:'Bajo peso', cls:'border-amber-400/40'};
+  if(bmi < 25) return {label:'Normal', cls:'border-emerald-400/40'};
+  if(bmi < 30) return {label:'Sobrepeso', cls:'border-amber-400/40'};
+  if(bmi < 35) return {label:'Obesidad I', cls:'border-red-400/40'};
+  if(bmi < 40) return {label:'Obesidad II', cls:'border-red-400/40'};
+  return {label:'Obesidad III', cls:'border-red-400/40'};
+}
+function renderIMC(){
+  const pesoDef = toNumber(weight.value, NaN);
+  const estDef = toNumber(heightCm.value, NaN);
+  openModal('Calculadora IMC', imcModalHTML(pesoDef, estDef));
+  setTimeout(()=>{
+    const pesoEl = document.getElementById('imcPeso');
+    const estEl  = document.getElementById('imcEst');
+    const calc   = document.getElementById('imcCalcBtn');
+    const clear  = document.getElementById('imcClearBtn');
+    const out    = document.getElementById('imcResultado');
+
+    [pesoEl, estEl].forEach(el=>{
+      el.addEventListener('keydown', e=>{ if(['e','E','+','-'].includes(e.key)) e.preventDefault(); });
+      el.addEventListener('input', ()=>{ el.value = el.value.replace(',', '.'); });
+      el.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); calc.click(); } });
+    });
+
+    calc.addEventListener('click', ()=>{
+      const p = toNumber(pesoEl.value, NaN);
+      const hcm = toNumber(estEl.value, NaN);
+      if(!Number.isFinite(p) || p<=0 || !Number.isFinite(hcm) || hcm<=0){
+        out.innerHTML = `<div class="text-amber-300">⚠️ Revisa los datos: peso y estatura deben ser válidos.</div>`;
+        return;
+      }
+      const m = hcm/100;
+      const bmi = p/(m*m);
+      const rangoMin = 18.5*(m*m);
+      const rangoMax = 24.9*(m*m);
+      const {label, cls} = clasificarIMC(bmi);
+
+      out.innerHTML = `
+        <div class="grid sm:grid-cols-3 gap-3">
+          <div class="panel-base panel-black ${cls}">
+            <div class="text-[11px] uppercase tracking-wide text-slate-300/85">Tu IMC</div>
+            <div class="text-2xl font-bold text-slate-50">${bmi.toFixed(1)}</div>
+            <div class="mt-1">${label}</div>
+          </div>
+          <div class="panel-base panel-black">
+            <div class="text-[11px] uppercase tracking-wide text-slate-300/85">Rango saludable</div>
+            <div class="text-sm">IMC 18.5–24.9</div>
+            <div class="text-xs text-slate-300">Para tu estatura: <b>${s(Math.round(rangoMin))}–${s(Math.round(rangoMax))} kg</b></div>
+          </div>
+          <div class="panel-base panel-black">
+            <div class="text-[11px] uppercase tracking-wide text-slate-300/85">Siguiente paso</div>
+            <div class="text-sm">
+              ${label==='Normal'
+                ? 'Mantén hábitos actuales y revisa tu plan de calorías.'
+                : 'Ajusta tu objetivo y cuida el balance de calorías y actividad.'
+              }
+            </div>
+          </div>
+        </div>`;
+    });
+
+    clear.addEventListener('click', ()=>{
+      pesoEl.value=''; estEl.value='';
+      out.innerHTML = `<div class="text-sm text-slate-400">Ingresa tus datos y presiona “Calcular IMC”.</div>`;
+    });
+  },0);
+}
+
+/* ===== Init ===== */
 document.getElementById('year').textContent=new Date().getFullYear();
 calcBtn.addEventListener('click', compute);
-detailsBtn.addEventListener('click', ()=>{
-  if(!window.__plan) compute();
-  openModal('Cómo usar tu plan', renderDetails(window.__plan));
-});
+detailsBtn.addEventListener('click', openDetails);
+imcBtn.addEventListener('click', renderIMC);
+clearBtn.addEventListener('click', resetForm);
 closeModal.addEventListener('click', closeModalFn);
 modalBg.addEventListener('click', (e)=>{ if(e.target===modalBg) closeModalFn(); });
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModalFn(); });
-
-// Sin cálculo inicial: el formulario arranca limpio.
+resetForm();
 </script>
 </body>
 </html>
