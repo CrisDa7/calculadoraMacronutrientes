@@ -531,18 +531,12 @@ function buildOneMeal(i, target){
 }
 
 function mealLabel(i){ return ['Desayuno','Almuerzo','Cena'][i] || `Comida ${i+1}`; }
-function formatQty(q){
-  const w = Math.floor(q), f = round(q-w,2);
-  if(f===0.5 && w>0) return `${w}½×`;
-  if(f===0.5 && w===0) return `½×`;
-  if(f===0.25) return `${w>0? w+'':''}¼×`.trim();
-  if(f===0.75) return `${w>0? w+'':''}¾×`.trim();
-  return `${round(q,2)}×`;
-}
+
+/* >>> NUEVO: solo gramos, sin multiplicador <<< */
 function describeItem(it){
   const f = FOOD_DB.find(x=>x.id===it.id);
-  const pesoTxt = f.peso ? ` · ${s(Math.round(f.peso*it.qty))} g` : '';
-  return `${formatQty(it.qty)} ${f.nombre}${pesoTxt}`;
+  const gramos = f.peso ? ` · ${s(Math.round(f.peso * it.qty))} g` : '';
+  return `${f.nombre}${gramos}`;
 }
 
 /* Reconciliación final del día */
