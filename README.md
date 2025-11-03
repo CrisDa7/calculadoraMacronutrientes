@@ -22,7 +22,7 @@ El proyecto fue desplegado en **Microsoft Azure App Service**, utilizando el mod
 - **CI/CD:** GitHub Actions + Azure Deployment Center
 
 
-## 🔄 Integración Continua (CI/CD)
+## Integración Continua (CI/CD)
 Se configuró la **integración continua (Continuous Integration)** mediante la vinculación directa del App Service con el repositorio GitHub.  
 Cada vez que se realiza un *push* o *merge* en la rama principal, Azure detecta los cambios y realiza automáticamente el despliegue en producción.
 
@@ -33,6 +33,6 @@ Cada vez que se realiza un *push* o *merge* en la rama principal, Azure detecta 
 
 ## Autor
 **Cristian David Ajila Asazna**  
-Estudiante de Computación en la Nube  
+Estudiante de la Universidad Nacional de Loja  
  Fecha: 1 de noviembre de 2025
 
