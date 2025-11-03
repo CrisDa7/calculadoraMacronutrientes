@@ -1,4 +1,4 @@
-# 🧮 Calculadora de Macronutrientes – CRISS FITT
+# Calculadora de Macronutrientes – CRISS FITT
 
 ## 📋 Descripción del Proyecto
 La **Calculadora de Macronutrientes CRISS FITT** es una aplicación web diseñada para ayudar a los usuarios a calcular su **Índice de Masa Corporal (IMC)**, así como su requerimiento diario de **macronutrientes** (proteínas, grasas y carbohidratos).  
