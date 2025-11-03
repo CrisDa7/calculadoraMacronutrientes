@@ -1,12 +1,12 @@
 # Calculadora de Macronutrientes – CRISS FITT
 
-## 📋 Descripción del Proyecto
+## Descripción del Proyecto
 La **Calculadora de Macronutrientes CRISS FITT** es una aplicación web diseñada para ayudar a los usuarios a calcular su **Índice de Masa Corporal (IMC)**, así como su requerimiento diario de **macronutrientes** (proteínas, grasas y carbohidratos).  
 Además, la app sugiere un **plan alimenticio diario** basado en las metas y nivel de actividad física del usuario.
 
 ---
 
-## 🚀 Despliegue en Azure App Service
+## Despliegue en Azure App Service
 El proyecto fue desplegado en **Microsoft Azure App Service**, utilizando el modelo **PaaS (Platform as a Service)**, que permite un entorno administrado, escalable y seguro.
 
 - **Región:** Canada Central  
@@ -15,7 +15,7 @@ El proyecto fue desplegado en **Microsoft Azure App Service**, utilizando el mod
 
 ---
 
-## ⚙️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 - **Frontend:** HTML5, CSS3, JavaScript  
 - **Backend:** Node.js  
 - **Entorno:** Linux (Azure App Service)  
@@ -27,12 +27,12 @@ Se configuró la **integración continua (Continuous Integration)** mediante la 
 Cada vez que se realiza un *push* o *merge* en la rama principal, Azure detecta los cambios y realiza automáticamente el despliegue en producción.
 
 
-## 📸 Evidencia del Despliegue
+## Evidencia del Despliegue
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/3c8ed2fc-d51d-4c86-8f89-15262f634288" />
 
 
-## 👨‍💻 Autor
+## Autor
 **Cristian David Ajila Asazna**  
 Estudiante de Computación en la Nube  
-📅 Fecha: 1 de noviembre de 2025
+ Fecha: 1 de noviembre de 2025
 
